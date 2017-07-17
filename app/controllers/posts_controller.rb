@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order("position")
   end
 
   # GET /posts/1
@@ -59,6 +59,13 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    params[:post].each_with_index do |id, index|
+      Post.update(id, position: index+1)
+    end
+    render nothing: true
   end
 
   private
