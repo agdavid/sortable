@@ -14,14 +14,27 @@
 
 <h1>Listing Posts</h1>
 
-<ul id="posts" data-update-url="<%= sort_posts_url %>">
-  <% @posts.each do |post| %>
-    <li id="post_<%= post.id %>">
-      <span class="handle">[drag]</span>
-      <%= link_to post.text, post_path(post) %>
-    </li>
-  <% end %>
-</ul>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Text</th>
+      </tr>
+    </thead>
+
+    <tbody id="posts" data-update-url="<%= sort_posts_url %>">
+      <% @posts.each do |post| %>
+        <tr id="post_<%= post.id %>">
+          <td>
+            <span class="handle">[drag]</span>
+            <%= post.text %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 
 <br>
 
